@@ -25,13 +25,13 @@ func main() {
 	logFatal(err)
 
 	defer connection.Close()
-	color.Cyan.Println("Enter your Username")
+	color.Cyan.Println("Enter your Name[]:-")
 	reader := bufio.NewReader(os.Stdin)
 	username, err := reader.ReadString('\n')
 	logFatal(err)
 
 	username = strings.Trim(username, "\r\n")
-	welcomeMsg := fmt.Sprintf("Welcome %s,to the chat , say hi to your friend.\n", username)
+	welcomeMsg := fmt.Sprintf("[]:-Welcome %s,\n", username)
 	connection.Write([]byte(welcomeMsg))
 
 	color.Green.Println(welcomeMsg)
@@ -52,7 +52,7 @@ func read(connection net.Conn) {
 			os.Exit(0)
 		}
 		color.Magenta.Println(message)
-		color.Red.Println("***************************  ********** ************")
+		color.Red.Println("/*------------------------*---------------------*/")
 
 	}
 
@@ -67,7 +67,7 @@ func write(connection net.Conn, username string) {
 		}
 
 		//formats the string to -> username:-message
-		message = fmt.Sprintf("%s:- %s\n", username, strings.Trim(message, "\r\n"))
+		message = fmt.Sprintf("[]:-%s:- %s\n", username, strings.Trim(message, "\r\n"))
 		connection.Write([]byte(message))
 
 	}
